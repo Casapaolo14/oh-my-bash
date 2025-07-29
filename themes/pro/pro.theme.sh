@@ -15,8 +15,19 @@ function git_prompt_info {
   echo -e "$SCM_PREFIX$SCM_BRANCH$SCM_STATE$SCM_SUFFIX"
 }
 
+# python_venv setup
+OMB_PROMPT_VIRTUALENV_FORMAT='(%s) '
+OMB_PROMPT_SHOW_PYTHON_VENV=${OMB_PROMPT_SHOW_PYTHON_VENV:=true}
+
 function _omb_theme_PROMPT_COMMAND() {
-  PS1="\h: \W $(scm_prompt_info)${_omb_prompt_reset_color} $ "
+  # set the python_venv format
+  local python_venv; _omb_prompt_get_python_venv
+  python_venv="$_omb_prompt_olive$python_venv"
+  local path;
+  path="$_omb_prompt_white\$PWD"
+  local user;
+  user="$_omb_prompt_bold_purple$USER"
+  PS1="${python_venv}${user}@\h~${path} $(scm_prompt_info)${_omb_prompt_reset_color}: "
 }
 
 _omb_util_add_prompt_command _omb_theme_PROMPT_COMMAND
