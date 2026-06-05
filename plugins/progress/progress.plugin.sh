@@ -10,10 +10,12 @@
 
 ############################---Usage---#########################################
 
-# Copy below functions (delay and progress fuctions) into your shell script directly
-# Then invoke progress function to show progress bar
+# Copy the below functions (the "delay" and "progress" functions) into your
+# shell script directly.  Then invoke the "progress" function to show a
+# progress bar.
 
-# In other way, you could import source indirectly then using. Nothing different
+# Alternatively, you could import the source file indirectly and then use
+# those functions.  There is no difference in the usage.
 
 ################################################################################
 
@@ -47,7 +49,7 @@ function progress {
   fi
 
   if ((value < 0)); then
-    _omb_log_error "invalid value: value' (expect: 0-100)" >&2
+    _omb_log_error "invalid value: $value (expect: 0-100)" >&2
     return 2
   fi
 
